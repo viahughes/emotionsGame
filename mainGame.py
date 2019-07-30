@@ -29,8 +29,50 @@ pygame.display.set_caption('Emotions Game')
 
 #***************   SETTINGS  ************************************************
 
-# (refer to flowchart on google drive for a rough plan for settings)
 
+# (refer to flowchart on google drive for a rough plan for settings)
+import pygame
+
+pygame.init()
+
+white = (255,255,255)
+red = (255,0,0)
+
+display_width = 800
+display_height = 480
+
+
+gameDisplay = pygame.display.set_mode((display_width, display_height))
+pygame.display.set_caption('Emotions Game')
+
+font = pygame.font.SysFont(None, 25)
+
+
+def message_to_screen (msg, color):
+  screen_text = font.render(msg, True, color)
+  gameDisplay.blit(screen_text, [display_width/2, display_height/2])
+  
+def settingsLoop():
+    gameDisplay.fill(white)
+    message_to_screen("Select C to go to clients or R to return to game", red);
+    pygame.display.update()
+    
+    for event in pygame.event.get():
+         if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_r:
+                settingsLoop() 
+            if event.key == pygame.K_c:
+                settingsLoop()
+                
+    gameDisplay.fill(white)     
+    pygame.display.update()
+
+
+settingsLoop()
+            
+            
+            
+  
 
 
 
